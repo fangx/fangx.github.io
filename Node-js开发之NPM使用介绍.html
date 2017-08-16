@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://fangx.me">
-  <title>RxJava基础入门系列(二) | fangx</title>
+  <title>Node.js开发之NPM使用介绍 | fangx</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="上一篇 中讲解一些RxJava的基本概念和创建Observable，Observer对象并通过subscribe关联起来的方法，接下来我们继续深入，学习RxJava为我们提供的一些方便的方法，为我们以后更顺畅的使用RxJava打基础。">
-<meta name="keywords" content="rxjava,rxandroid">
+  <meta name="description" content="NPM是什么NPM是随同NodeJS一起安装的包管理工具，能解决NodeJS代码部署上的很多问题，用户可以方便的通过npm引入第三方人员开发的包来辅助完成程序开发，开发人员也可以将自己开发的模块功能打包成npm包传到npm中给其他开发人员使用。">
+<meta name="keywords" content="Node.js,NPM">
 <meta property="og:type" content="article">
-<meta property="og:title" content="RxJava基础入门系列(二)">
-<meta property="og:url" content="http://fangx.me/2016/03/13/RxJava2/index.html">
+<meta property="og:title" content="Node.js开发之NPM使用介绍">
+<meta property="og:url" content="http://fangx.me/Node-js开发之NPM使用介绍.html">
 <meta property="og:site_name" content="fangx">
-<meta property="og:description" content="上一篇 中讲解一些RxJava的基本概念和创建Observable，Observer对象并通过subscribe关联起来的方法，接下来我们继续深入，学习RxJava为我们提供的一些方便的方法，为我们以后更顺畅的使用RxJava打基础。">
+<meta property="og:description" content="NPM是什么NPM是随同NodeJS一起安装的包管理工具，能解决NodeJS代码部署上的很多问题，用户可以方便的通过npm引入第三方人员开发的包来辅助完成程序开发，开发人员也可以将自己开发的模块功能打包成npm包传到npm中给其他开发人员使用。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2016-03-21T06:52:14.000Z">
+<meta property="og:updated_time" content="2016-09-28T08:35:23.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="RxJava基础入门系列(二)">
-<meta name="twitter:description" content="上一篇 中讲解一些RxJava的基本概念和创建Observable，Observer对象并通过subscribe关联起来的方法，接下来我们继续深入，学习RxJava为我们提供的一些方便的方法，为我们以后更顺畅的使用RxJava打基础。">
+<meta name="twitter:title" content="Node.js开发之NPM使用介绍">
+<meta name="twitter:description" content="NPM是什么NPM是随同NodeJS一起安装的包管理工具，能解决NodeJS代码部署上的很多问题，用户可以方便的通过npm引入第三方人员开发的包来辅助完成程序开发，开发人员也可以将自己开发的模块功能打包成npm包传到npm中给其他开发人员使用。">
   
     <link rel="alternative" href="/atom.xml" title="fangx" type="application/atom+xml">
   
@@ -159,137 +159,73 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-RxJava2" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Node-js开发之NPM使用介绍" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      RxJava基础入门系列(二)
+      Node.js开发之NPM使用介绍
     </h1>
   
 
         
-        <a href="/2016/03/13/RxJava2/" class="archive-article-date">
-  	<time datetime="2016-03-13T08:32:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-03-13</time>
+        <a href="/Node-js开发之NPM使用介绍.html" class="archive-article-date">
+  	<time datetime="2016-09-28T05:57:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-09-28</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><a href="http://fangx.me/2016/03/06/RxJava1/">上一篇</a> 中讲解一些RxJava的基本概念和创建Observable，Observer对象并通过subscribe关联起来的方法，接下来我们继续深入，学习RxJava为我们提供的一些方便的方法，为我们以后更顺畅的使用RxJava打基础。<br><a id="more"></a></p>
-<h1 id="更进一步"><a href="#更进一步" class="headerlink" title="更进一步"></a>更进一步</h1><h3 id="从列表创建一个Observable"><a href="#从列表创建一个Observable" class="headerlink" title="从列表创建一个Observable"></a>从列表创建一个Observable</h3><h5 id="Observable-from"><a href="#Observable-from" class="headerlink" title="Observable.from()"></a>Observable.from()</h5><p>上一篇中我们知道了可以使用Observable.create()方法来创建一个Observable，不知道你是啥感觉，这种方式我是没办法高潮的~</p>
-<p>来来来，让我们来点前戏，RxJava为我们提供了from()函数。使用这个特殊的“创建”函数，我们可以从一个列表中创建一个Observable。Observable将发射出列表中的每一个元素，我们可以通过订阅它们来对这些发出的元素做出响应。</p>
-<p>来看个例子，由于项目最近是在做即时通讯的一些东西，我就直接假设我们现在有一个聊天对话列表: List<chat>  chats</chat></p>
-<p>假设我们现在想观察这个列表里的所有对话,那么首先要根据 chats 创建一个被观察者 ，我们可以使用Observable的from()函数: </p>
-<pre><code>Observable.from(chats)
-</code></pre><p>这样我们就得到一个包含chats列表的被观察者即Observable对象，是不是有点太简单了点~</p>
-<p>通过查看RxJava的源码我们可以看到Observable.from()方法接收一个Iterable（迭代器）类型的参数，贴下源码：</p>
-<pre><code>public final static &lt;T&gt; Observable&lt;T&gt; from(Iterable&lt;? extends T&gt; iterable) {
-            return create(new OnSubscribeFromIterable&lt;T&gt;(iterable));
-        }
-</code></pre><p>其实Observable.from()方法还可以接受数组类型和<a href="http://blog.csdn.net/ghsau/article/details/7451464" target="_blank" rel="external">Future</a>类型的参数，用法类似，可自行尝试~</p>
-<p>看到这里你可能会吐槽，说了这么多，有什么卵用，哈哈现在看确实没啥卵用，但是现在我们可是已经get新技能啦，把一个可序列类型的数据结构转换为Observable对象，学会了这种方式，其实我们android开发中很多应用场景都好办多了，不扯淡，继续向下看~</p>
-<h3 id="从多个同类型对象创建一个Observable"><a href="#从多个同类型对象创建一个Observable" class="headerlink" title="从多个同类型对象创建一个Observable"></a>从多个同类型对象创建一个Observable</h3><h5 id="Observable-just"><a href="#Observable-just" class="headerlink" title="Observable.just()"></a>Observable.just()</h5><p>我们还可以通过RxJava为我们提供了just()函数来从多个同类型对象创建Observable，代码如下：</p>
-<pre><code>Observable.just(chat1, chat2, chat3)
-</code></pre><p>通过上面代码创建的Observable在被观察时就会依次发射三个Chat对象</p>
-<h3 id="使用我们刚创建的Observable干点大事"><a href="#使用我们刚创建的Observable干点大事" class="headerlink" title="使用我们刚创建的Observable干点大事"></a>使用我们刚创建的Observable干点大事</h3><p>上面我们创建了一个包含List<chat>的Observable，我们可以设想开发中的一个具体使用场景，我们现在收到多条对话，为了提升下次进入聊天页的体验（不每次从服务器拉取数据），我们想把这些对话信息插入到我们的数据库里去好做缓存备份。</chat></p>
-<p>对于这种需求，像我这种有追求高逼格的开发人员一般是不会拒绝的，这时我们创建的Observable对象就起到作用了。用RxJava的语言解释这种需求就是观察创建的Observable对象然后从里边一条条的取出对话信息并存起来，实现起来很简单，我们只需要再创建一个观察者Observer，来观察我们创建好的Observable对象就好了~亮代码</p>
-<pre><code>Observable.from(chats).subscribe(new Observer&lt;Chat&gt;() {
-            @Override
-            public void onCompleted() {
-                saveDBCompleted();
-            }
+        <h3 id="NPM是什么"><a href="#NPM是什么" class="headerlink" title="NPM是什么"></a>NPM是什么</h3><p>NPM是随同NodeJS一起安装的包管理工具，能解决NodeJS代码部署上的很多问题，用户可以方便的通过npm引入第三方人员开发的包来辅助完成程序开发，开发人员也可以将自己开发的模块功能打包成npm包传到npm中给其他开发人员使用。<br><a id="more"></a><br>由于新版的nodejs已经集成了npm，所以之前npm也一并安装好了。同样可以通过输入 “npm -v” 来测试是否成功安装。命令如下，出现版本提示表示安装成功：</p>
+<pre><code>$ npm -v
+2.15.5
+</code></pre><h3 id="Express是什么"><a href="#Express是什么" class="headerlink" title="Express是什么"></a>Express是什么</h3><p>Express 是一个简洁而灵活的 node.js Web应用框架, 提供一系列强大特性帮助你创建各种Web应用。Express 不对 node.js 已有的特性进行二次抽象，我们只是在它之上扩展了Web应用所需的功能。丰富的HTTP工具以及来自Connect框架的中间件随取随用，创建强健、友好的API变得快速又简单。想了解更多可以去Express官网查看更多信息<a href="http://www.expressjs.com.cn/" target="_blank" rel="external">Express官网</a></p>
+<h3 id="使用-npm-命令安装模块"><a href="#使用-npm-命令安装模块" class="headerlink" title="使用 npm 命令安装模块"></a>使用 npm 命令安装模块</h3><ol>
+<li><p>npm 安装 Node.js 模块语法格式如下</p>
+<p> $ npm install <module name=""></module></p>
+</li>
+<li><p>以下实例，我们使用 npm 命令安装常用的 Node.js web框架模块 express,（npm有特别多好用的包，可以去官网产看<a href="https://www.npmjs.com/" target="_blank" rel="external">传送门</a>）命令如下:</p>
+<p> $ npm install express</p>
+</li>
+<li><p>安装成功之后，express 包就放在了工程目录下的 node_modules 目录中,在程序中使用的时候，我们只需要使用上节课讲到的nodejs required 模块的方式将express引入即可，代码如下：</p>
+<p> var express = require(‘express’);</p>
+</li>
+</ol>
+<h3 id="全局安装与本地安装"><a href="#全局安装与本地安装" class="headerlink" title="全局安装与本地安装"></a>全局安装与本地安装</h3><ol>
+<li><p>npm 的包安装分为本地安装（local）、全局安装（global）两种,相应的安装命令如下：</p>
+<p> npm install <module name="">      # 本地安装<br> npm install <module name=""> -g   # 全局安装</module></module></p>
+</li>
+<li><p>二者区别</p>
+</li>
+</ol>
+<ul>
+<li><p>本地安装</p>
+<ol>
+<li>将安装包放在 ./node_modules 下（运行 npm 命令时所在的目录），如果没有 node_modules 目录，会在当前执行 npm 命令的目录下生成 node_modules 目录。</li>
+<li>可以通过 require() 来引入本地安装的包。</li>
+</ol>
+</li>
+<li><p>全局安装</p>
+<ol>
+<li>将安装包放在 /usr/local 下或者你 node 的安装目录。</li>
+<li>可以直接在命令行里使用。</li>
+</ol>
+<p>可以使用以下命令来查看所有全局安装的模块：</p>
+<p>   $ npm ls -g</p>
+</li>
+</ul>
+<h3 id="卸载模块"><a href="#卸载模块" class="headerlink" title="卸载模块"></a>卸载模块</h3><p>可以使用以下命令来卸载 Node.js 模块</p>
+<pre><code>$ npm uninstall &lt;Module Name&gt;
+</code></pre><p>卸载后，你可以到 /node_modules/ 目录下查看包是否还存在，或者使用以下命令查看：</p>
+<pre><code>$ npm ls
+</code></pre><h3 id="更新模块"><a href="#更新模块" class="headerlink" title="更新模块"></a>更新模块</h3><p>可以使用以下命令更新模块：</p>
+<pre><code>$ npm update &lt;Module Name&gt;
+</code></pre><p>##简单总结</p>
+<p>npm是一个非常好用的包管理工具，它会伴随着我们的node.js开发，我们可以用npm来管理我们的项目，也可以在npm发现很多让我们的开发变得简单的三方模块。npm还有很多的命令，由于此处只是先入门所以就挑选了几个最简单常用的命令讲解一下，感兴趣的朋友可以去网上查询了解更多，后续的课程中我们也还会有更多npm相关的使用讲解~</p>
 
-            @Override
-            public void onError(Throwable e) {
-                saveDBError();
-            }
-
-            @Override
-            public void onNext(Chat chat) {
-                //存放数据到数据库
-                saveDB(chat);
-            }
-        });
-</code></pre><h3 id="吐槽时间"><a href="#吐槽时间" class="headerlink" title="吐槽时间"></a>吐槽时间</h3><p>好吧，我承认这确实不是一件大事，而且你可能会说，你写的这是啥玩意，这种需求我一个for循环就完事了，你搞半天搞出这一堆代码在逗我么!!!~额，我真的没逗你，RxJava这个东西如果按照循序渐进的方式来学的话到这一步确实是这样的。但是不要担心，要知道数据库操作是比较耗时的操作，所以如果你考虑性能的话for循环的方式肯定是太low，所以这时RxJava更牛逼东西 <font color="green">线程控制 —— Scheduler</font> 就会让你高潮啦~</p>
-<h3 id="再多几个方法"><a href="#再多几个方法" class="headerlink" title="再多几个方法"></a>再多几个方法</h3><h5 id="创建轮询-interval-方法"><a href="#创建轮询-interval-方法" class="headerlink" title="创建轮询 interval() 方法"></a>创建轮询 interval() 方法</h5><p>在程序开发中我们可能会碰到需要创建一个轮询来完成某件事，最常用的方法可能是开启一个Timer,现在我们有了新的方式，使用Observable的interval方法，相信我，这会让你的代码看上去更优雅，X格更高，用起来炒鸡爽，事例代码：</p>
-<pre><code>Observable
-.interval(2,TimeUnit.SECONDS)
-.subscribe(new Subscriber&lt;Long&gt;() {
-            @Override
-            public void onCompleted() {
-
-            }
-
-            @Override
-            public void onError(Throwable e) {
-
-            }
-
-            @Override
-            public void onNext(Long aLong) {
-
-            }
-        });
-</code></pre><p>interval()函数有两个参数：一个指定两次发射的时间间隔，另一个是用到的时间单位。</p>
-<h5 id="延迟发射-timer-方法"><a href="#延迟发射-timer-方法" class="headerlink" title="延迟发射 timer() 方法"></a>延迟发射 timer() 方法</h5><p>开发中我们还可能会碰到一种场景是需要延迟一段时间后去执行某个方法或者去完成某件事情，通常可能会使用Handler.postDelayed方式，但是Handler导致内存泄露的问题实在蛋疼~所以，RxJava都为我们考虑好了，事例代码：</p>
-<pre><code>Observable
- .timer(3, TimeUnit.SECONDS)
- .subscribe(new Observer&lt;Long&gt;() {
-
-            @Override
-            public void onCompleted() {
-
-            }
-
-            @Override
-            public void onError(Throwable e) {
-
-            }
-
-            @Override
-            public void onNext(Long number) {
-            //勇敢的去干你想干的~
-
-            }
-        });
-</code></pre><p>上述方法会在三秒后发射一个0，然后就完成了，你所要做的就是在onNext中去做你想做的事。</p>
-<p>其实timer还有更高级的用法,如下：</p>
-<pre><code>Observable
-.timer(3, 2,TimeUnit.SECONDS)
-.subscribe(new Observer&lt;Long&gt;() {
-
-            @Override
-            public void onCompleted() {
-
-            }
-
-            @Override
-            public void onError(Throwable e) {
-
-            }
-
-            @Override
-            public void onNext(Long number) {
-            }
-        });
-</code></pre><p>上面的代码中只多传了一个参数，实现的效果是会在三秒后开启一个轮询程序，相当于延迟3秒执行的interval()版本。</p>
-<h5 id="指定范围发射-range-方法"><a href="#指定范围发射-range-方法" class="headerlink" title="指定范围发射 range() 方法"></a>指定范围发射 range() 方法</h5><p>如果我们想从一个指定的数字a开始发射b个数字，则可以使用range() 方法,参数可以有两个，第一个是开始点，第二个是想要发射的数字个数。事例代码：</p>
-<pre><code>Observable
-.range(5,3)
-.subscribe(new Observer&lt;Chat&gt;() {...});
-</code></pre><p>上面的代码会输出5，6，7</p>
-<h5 id="重复发射-repeat-方法"><a href="#重复发射-repeat-方法" class="headerlink" title="重复发射 repeat() 方法"></a>重复发射 repeat() 方法</h5><p>如果我们想把列表中的聊天数据重复遍历多次，则可以使用repeat() 方法,参数是想要重复的次数。事例代码：</p>
-<pre><code>Observable
- .from(chats)
- .repeat(3)
- .subscribe(new Observer&lt;Chat&gt;() {...});
-</code></pre><p>上面的代码会把chats重复发送三次</p>
-<p>好了，第二篇到此结束，到这里关于Observable的理解应该更深入了，也可以更优雅的创建Observable对象了，还get了很多实用的技能，再也不用被使用timer,hanler等方式时各种恶心的问题所困扰啦，下一篇讲讲 <font color="green">线程控制 —— Scheduler</font> 绝对高潮到尖叫</p>
-<h3 id="我们的目标是-：优雅的写代码，愉快的装X"><a href="#我们的目标是-：优雅的写代码，愉快的装X" class="headerlink" title="我们的目标是 ：优雅的写代码，愉快的装X~"></a>我们的目标是 ：优雅的写代码，愉快的装X~</h3>
       
 
       
@@ -328,11 +264,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">rxjava</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Node.js</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">rxandroid</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">NPM</a>
         		</li>
       		
 		</ul>
@@ -388,7 +324,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://fangx.me/2016/03/13/RxJava2/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://fangx.me/Node-js开发之NPM使用介绍.html" alt="微信分享二维码">
     </div>
 </div>
 
@@ -402,18 +338,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2016/03/20/RxJava3/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/Node-js开发之回调和事件循环.html" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          RxJava基础入门系列(三)
+          Node.js开发之回调和事件循环
         
       </div>
     </a>
   
   
-    <a href="/2016/03/06/RxJava1/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">RxJava基础入门系列(一)</div>
+    <a href="/Node-js开发之环境搭建.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Node.js开发环境搭建</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -541,7 +477,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">NPM</a>
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -549,7 +485,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+                <a href="javascript:void(0)" class="js-tag color4">NPM</a>
               </li>
              
               <li class="article-tag-list-item">

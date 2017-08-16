@@ -6,22 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://fangx.me">
-  <title>Node.js开发之回调和事件循环 | fangx</title>
+  <title>fangx</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Node.js回调函数通过之前的学习我们了解到，Node.js 使用了一个事件驱动、非阻塞式 I/O 的模型。所以我们可以理解为在使用Node.js写程序时会大量的使用异步编程，而Node.js 异步编程的直接体现就是回调。">
-<meta name="keywords" content="Node.js,JavaScript">
+  <meta name="description" content="#病程管理平台调研 ###调研背景移动医疗在经历一波又一波的浪潮之后，仍然没有真正脱颖而出的公司或者商业模式。现阶段大家的目光更多的关注到线下实体和患者病程管理上来。本文的重点是调研病程管理相关的平台，分析可行性及可能的商业模式。 ###目前在做病程管理的产品对比妙健康http://www.healthpoint.cn/archives/57164">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Node.js开发之回调和事件循环">
-<meta property="og:url" content="http://fangx.me/2016/10/27/Node-js开发之回调和事件循环/index.html">
+<meta property="og:title" content="fangx">
+<meta property="og:url" content="http://fangx.me/病程管理平台调研.html">
 <meta property="og:site_name" content="fangx">
-<meta property="og:description" content="Node.js回调函数通过之前的学习我们了解到，Node.js 使用了一个事件驱动、非阻塞式 I/O 的模型。所以我们可以理解为在使用Node.js写程序时会大量的使用异步编程，而Node.js 异步编程的直接体现就是回调。">
+<meta property="og:description" content="#病程管理平台调研 ###调研背景移动医疗在经历一波又一波的浪潮之后，仍然没有真正脱颖而出的公司或者商业模式。现阶段大家的目光更多的关注到线下实体和患者病程管理上来。本文的重点是调研病程管理相关的平台，分析可行性及可能的商业模式。 ###目前在做病程管理的产品对比妙健康http://www.healthpoint.cn/archives/57164">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://fxblog.oss-cn-beijing.aliyuncs.com/event_loop.jpg">
-<meta property="og:updated_time" content="2016-10-27T10:04:06.000Z">
+<meta property="og:updated_time" content="2017-07-11T07:50:13.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Node.js开发之回调和事件循环">
-<meta name="twitter:description" content="Node.js回调函数通过之前的学习我们了解到，Node.js 使用了一个事件驱动、非阻塞式 I/O 的模型。所以我们可以理解为在使用Node.js写程序时会大量的使用异步编程，而Node.js 异步编程的直接体现就是回调。">
-<meta name="twitter:image" content="http://fxblog.oss-cn-beijing.aliyuncs.com/event_loop.jpg">
+<meta name="twitter:title" content="fangx">
+<meta name="twitter:description" content="#病程管理平台调研 ###调研背景移动医疗在经历一波又一波的浪潮之后，仍然没有真正脱颖而出的公司或者商业模式。现阶段大家的目光更多的关注到线下实体和患者病程管理上来。本文的重点是调研病程管理相关的平台，分析可行性及可能的商业模式。 ###目前在做病程管理的产品对比妙健康http://www.healthpoint.cn/archives/57164">
   
     <link rel="alternative" href="/atom.xml" title="fangx" type="application/atom+xml">
   
@@ -161,92 +158,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Node-js开发之回调和事件循环" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-病程管理平台调研" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      Node.js开发之回调和事件循环
-    </h1>
-  
-
-        
-        <a href="/2016/10/27/Node-js开发之回调和事件循环/" class="archive-article-date">
-  	<time datetime="2016-10-27T06:47:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-10-27</time>
-</a>
-        
-      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="Node-js回调函数"><a href="#Node-js回调函数" class="headerlink" title="Node.js回调函数"></a>Node.js回调函数</h3><p>通过之前的学习我们了解到，Node.js 使用了一个事件驱动、非阻塞式 I/O 的模型。所以我们可以理解为在使用Node.js写程序时会大量的使用异步编程，而Node.js 异步编程的直接体现就是回调。<br><a id="more"></a></p>
-<h4 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h4><p>异步编程依托于回调来实现，但不能说使用了回调后程序就异步化了。<br>回调函数在完成任务后就会被调用，Node 使用了大量的回调函数，Node 所有 API 都支持回调函数。</p>
-<p>举个栗子：我们可以使用Node.js去读取文件，我们知道，读取文件是最基本的IO操作。什么？你不知道IO是什么，好吧，最通俗的理解就是Input与Output的缩写，所以文件读写是很基本的IO操作，至于其它的想深入理解可以去google一下~好啦回归正题，我们想要读取一个文件，而IO操作是比较耗时的，文件大了更可怕，但是不用担心，Node.js异步变成支持我们在读取文件的时候继续去执行其他的操作，我们只需要给文件读取设置一个监听（也就是写个回调函数），当文件读取完之后我们的回调函数就会被调用，我们可以把文件的内容作为回调函数的参数收到。这样在执行代码时就没有阻塞或等待文件 I/O 操作。这就大大提高了 Node.js 的性能，可以处理大量的并发请求。</p>
-<h4 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h4><ol>
-<li><p>首先创建一个用户测试的文件 test.txt ,可以随便粘贴一段内容到文件里，我们会用代码把这些内容读取出来，譬如我们写入如下内容：</p>
-<p> 好孕帮-助您更快好孕</p>
-</li>
-<li><p>然后来看一个用同步阻塞方式实现IO操作的代码</p>
-</li>
-</ol>
-<ul>
-<li><p>创建 main.js 文件, 代码如下：</p>
-<p>  var fs = require(“fs”);<br>  var data = fs.readFileSync(‘input.txt’);<br>  console.log(data.toString());<br>  console.log(“程序执行结束!”);</p>
-</li>
-<li><p>使用命令运行代码，查看输出结果</p>
-<p>  node main.js</p>
-</li>
-</ul>
-<pre><code>好孕帮-助您更快好孕
-程序执行结束!
-</code></pre><ol>
-<li>最后来看一个用异步非阻塞方式实现IO操作的代码</li>
-</ol>
-<ul>
-<li><p>创建 main.js 文件, 代码如下：</p>
-<p>  var fs = require(“fs”);</p>
-<pre><code>fs.readFile(&apos;input.txt&apos;, function (err, data) {
- if (err) return console.error(err);
- console.log(data.toString());
-});
-console.log(&quot;程序执行结束!&quot;);
-</code></pre></li>
-<li><p>使用命令运行代码，查看输出结果</p>
-<p>  node main.js</p>
-<p>  程序执行结束!<br>  好孕帮-助您更快好孕</p>
-</li>
-</ul>
-<ol>
-<li>通过对比第2步和第3步中的输出可以发现,2中的文件读取完之后才结束程序，而3不需要等待文件读取完，就可以在读取文件时同时执行接下来的代码，大大提高了程序的性能。 </li>
-</ol>
-<h3 id="Node-js-事件循环"><a href="#Node-js-事件循环" class="headerlink" title="Node.js 事件循环"></a>Node.js 事件循环</h3><h4 id="基本概念-1"><a href="#基本概念-1" class="headerlink" title="基本概念"></a>基本概念</h4><p>Node.js 是单进程单线程应用程序，但是通过事件和回调支持并发，所以性能非常高。<br>通过上面的学习我们了解了什么回调，接下来我们学习Node.js的事件机制，其实Node.js 基本上所有的事件机制都是用设计模式中<a href="http://www.cnblogs.com/Olive116/p/5270948.html" target="_blank" rel="external">观察者模式</a>实现。</p>
-<p>Node.js程序是单线程的，我们可以简单的理解程序启动就类似进入到一个while(true)的事件循环，每个异步事件都生成一个事件观察者，如果有事件发生就调用该回调函数。针对服务端而言就是说，每一个 API 都是一个事件，并作为一个独立线程运行，使用异步函数调用，并处理并发。</p>
-<h4 id="事件驱动程序模型"><a href="#事件驱动程序模型" class="headerlink" title="事件驱动程序模型"></a>事件驱动程序模型</h4><p>Node.js 使用事件驱动模型，当web server接收到请求，就把它关闭然后进行处理，然后去服务下一个web请求。当这个请求完成，它被放回处理队列，当到达队列开头，这个结果被返回给用户。</p>
-<p>这个模型非常高效可扩展性非常强，因为webserver一直接受请求而不等待任何读写操作。（这也被称之为非阻塞式IO或者事件驱动IO）<br>在事件驱动模型中，会生成一个主循环来监听事件，当检测到事件时触发回调函数。</p>
-<p>大概模型如下图：<br><img src="http://fxblog.oss-cn-beijing.aliyuncs.com/event_loop.jpg" alt="事件驱动程序模型图"></p>
-<p>整个事件驱动的流程就是这么实现的，非常简洁。有点类似于观察者模式，事件相当于一个主题(Subject)，而所有注册到这个事件上的处理函数相当于观察者(Observer)。</p>
-<h3 id="Node-js-EventEmitter"><a href="#Node-js-EventEmitter" class="headerlink" title="Node.js EventEmitter"></a>Node.js EventEmitter</h3><h4 id="基本概念-2"><a href="#基本概念-2" class="headerlink" title="基本概念"></a>基本概念</h4><p>events是Node.js的一个核心模块（如果你还不了解什么是模块，不要着急，后续我们会讲，我们可以简单的理解为模块是Node.js的内置方法，或者用我们之前的理解就是模块就像是一个包，只不过这个包是内置好的）。</p>
-<p>events 模块只提供了一个对象： events.EventEmitter。EventEmitter 的核心就是事件触发与事件监听器功能的封装。<br>你可以通过require(“events”);来访问该模块。</p>
-<p>Node.js 所有的异步 I/O 操作在完成时都会发送一个事件到事件队列。</p>
-<p>Node.js里面的许多对象都会分发事件：一个net.Server对象会在每次有新连接时分发一个事件， 一个fs.readStream对象会在文件被打开的时候发出一个事件。 所有这些产生事件的对象都是 events.EventEmitter 的实例。</p>
-<h4 id="举例说明"><a href="#举例说明" class="headerlink" title="举例说明"></a>举例说明</h4><ul>
-<li>创建event.js文件</li>
-<li><p>写入如下代码</p>
-<p>  // 引入 events 模块<br>  var events = require(‘events’);<br>  // 创建 eventEmitter 对象<br>  var event = new events.EventEmitter();</p>
-<p>  event.on(‘test’, function() { </p>
-<pre><code>console.log(&apos;test 事件触发&apos;); 
-</code></pre><p>  }); </p>
-<p>  console.log(‘准备执行事件’); </p>
-<p>  setTimeout(function() { </p>
-<pre><code>event.emit(&apos;test&apos;); 
-</code></pre><p>  }, 1000);</p>
-</li>
-</ul>
-<ul>
-<li>运行代码 node event.js ，可以看到控制台先输出 <code>准备执行事件</code> ，然后等待1秒后输出 <code>test 事件触发</code>，这段代码可以看出来我们给event注册了事件test的一个监听器，然后我们通过setTimeout设置一秒后向 event 对象发送事件 test，此时会调用test 的监听器</li>
-</ul>
+        <p>#病程管理平台调研</p>
+<p>###调研背景<br>移动医疗在经历一波又一波的浪潮之后，仍然没有真正脱颖而出的公司或者商业模式。现阶段大家的目光更多的关注到线下实体和患者病程管理上来。本文的重点是调研病程管理相关的平台，分析可行性及可能的商业模式。</p>
+<p>###目前在做病程管理的产品对比<br>妙健康<br><a href="http://www.healthpoint.cn/archives/57164" target="_blank" rel="external">http://www.healthpoint.cn/archives/57164</a></p>
 
       
 
@@ -281,21 +200,6 @@ console.log(&quot;程序执行结束!&quot;);
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Node.js</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 
       
@@ -346,7 +250,7 @@ console.log(&quot;程序执行结束!&quot;);
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://fangx.me/2016/10/27/Node-js开发之回调和事件循环/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://fangx.me/病程管理平台调研.html" alt="微信分享二维码">
     </div>
 </div>
 
@@ -360,18 +264,9 @@ console.log(&quot;程序执行结束!&quot;);
   
 <nav id="article-nav">
   
-    <a href="/2016/10/28/Node-js开发之使用Express框架构建服务端项目/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Node.js开发之使用Express框架构建服务端项目
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/09/28/Node-js开发之NPM使用介绍/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Node.js开发之NPM使用介绍</div>
+    <a href="/Node-js开发之使用Express框架构建服务端项目.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Node.js开发之使用Express框架构建服务端项目</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -499,7 +394,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">NPM</a>
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -507,7 +402,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+                <a href="javascript:void(0)" class="js-tag color4">NPM</a>
               </li>
              
               <li class="article-tag-list-item">

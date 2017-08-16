@@ -6,27 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://fangx.me">
-  <title>Node.js开发环境搭建 | fangx</title>
+  <title>好孕帮 | fangx</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前言这是一个多种语言百花齐放的时代，各种优秀开发语言都占据不小的使用份额，但是近几年JavaScript的使用增长势头明显是最迅猛的，大有超越Java和C的势头，而且随着Node.js的推出，JavaScript不只可以写前端还可以做服务端开发，大有一统Web端开发的苗头。近几年FaceBook推出的React Native ，微信推出的公众号、小程序也在推动着JavaScript增长的浪潮。">
-<meta name="keywords" content="Node.js,JavaScript">
+  <meta name="description" content="助您更快好孕!">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Node.js开发环境搭建">
-<meta property="og:url" content="http://fangx.me/2016/09/28/Node-js开发之环境搭建/index.html">
+<meta property="og:title" content="好孕帮">
+<meta property="og:url" content="http://fangx.me/haoyunbang.html">
 <meta property="og:site_name" content="fangx">
-<meta property="og:description" content="前言这是一个多种语言百花齐放的时代，各种优秀开发语言都占据不小的使用份额，但是近几年JavaScript的使用增长势头明显是最迅猛的，大有超越Java和C的势头，而且随着Node.js的推出，JavaScript不只可以写前端还可以做服务端开发，大有一统Web端开发的苗头。近几年FaceBook推出的React Native ，微信推出的公众号、小程序也在推动着JavaScript增长的浪潮。">
+<meta property="og:description" content="助您更快好孕!">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://fxblog.oss-cn-beijing.aliyuncs.com/node_1_1.png">
-<meta property="og:image" content="http://fxblog.oss-cn-beijing.aliyuncs.com/node_1_2.png">
-<meta property="og:image" content="http://fxblog.oss-cn-beijing.aliyuncs.com/node_1_3.png">
-<meta property="og:image" content="http://fxblog.oss-cn-beijing.aliyuncs.com/node_1_4.png">
-<meta property="og:image" content="http://fxblog.oss-cn-beijing.aliyuncs.com/node_1_5.png">
-<meta property="og:image" content="http://fxblog.oss-cn-beijing.aliyuncs.com/node_1_6.png">
-<meta property="og:updated_time" content="2016-09-28T05:56:44.000Z">
+<meta property="og:updated_time" content="2016-03-04T10:52:53.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Node.js开发环境搭建">
-<meta name="twitter:description" content="前言这是一个多种语言百花齐放的时代，各种优秀开发语言都占据不小的使用份额，但是近几年JavaScript的使用增长势头明显是最迅猛的，大有超越Java和C的势头，而且随着Node.js的推出，JavaScript不只可以写前端还可以做服务端开发，大有一统Web端开发的苗头。近几年FaceBook推出的React Native ，微信推出的公众号、小程序也在推动着JavaScript增长的浪潮。">
-<meta name="twitter:image" content="http://fxblog.oss-cn-beijing.aliyuncs.com/node_1_1.png">
+<meta name="twitter:title" content="好孕帮">
+<meta name="twitter:description" content="助您更快好孕!">
   
     <link rel="alternative" href="/atom.xml" title="fangx" type="application/atom+xml">
   
@@ -166,85 +158,27 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Node-js开发之环境搭建" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-haoyunbang" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Node.js开发环境搭建
+      好孕帮
     </h1>
   
 
         
-        <a href="/2016/09/28/Node-js开发之环境搭建/" class="archive-article-date">
-  	<time datetime="2016-09-28T01:20:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-09-28</time>
+        <a href="/haoyunbang.html" class="archive-article-date">
+  	<time datetime="2015-08-01T02:30:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-08-01</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这是一个多种语言百花齐放的时代，各种优秀开发语言都占据不小的使用份额，但是近几年JavaScript的使用增长势头明显是最迅猛的，大有超越Java和C的势头，而且随着Node.js的推出，JavaScript不只可以写前端还可以做服务端开发，大有一统Web端开发的苗头。近几年FaceBook推出的React Native ，微信推出的公众号、小程序也在推动着JavaScript增长的浪潮。<br><a id="more"></a><br>本系列课程将带领大家入门Node.js开发，因为最近微信推出的小程序特别火，所以我们的目标就是让大家可以用Node.js实现一个小程序的server端。</p>
-<h1 id="储备点基本概念"><a href="#储备点基本概念" class="headerlink" title="储备点基本概念"></a>储备点基本概念</h1><h3 id="Node-js是什么？"><a href="#Node-js是什么？" class="headerlink" title="Node.js是什么？"></a>Node.js是什么？</h3><p>Node.js是一个Javascript运行环境(runtime)。实际上它是对Google V8引擎进行了封装。V8引 擎执行Javascript的速度非常快，性能非常好。Node.js对一些特殊用例进行了优化，提供了替代的API，使得V8在非浏览器环境下运行得更好。</p>
-<p>##安装Node.js</p>
-<ol>
-<li>去官网下载自己操作系统对应的Node安装文件，作者用的MAC看到的界面如下图  <a href="https://nodejs.org/en/" target="_blank" rel="external">附上下载地址</a></li>
-</ol>
-<p><img src="http://fxblog.oss-cn-beijing.aliyuncs.com/node_1_1.png" alt="node下载地址"></p>
-<p>因为只是入门讲解，所以我们下载稳定版，感兴趣的或者以后深入之后可以下载最新版体验node新特性</p>
-<ol>
-<li><p>下载之后直接点击安装，如下图：<br><img src="http://fxblog.oss-cn-beijing.aliyuncs.com/node_1_2.png" alt="node下载地址"><br>一路继续点下去就好~（windows可能涉及到选择安装位置，请自行选择~）</p>
-</li>
-<li><p>安装完之后，打开终端（命令行）输入 node –version命令确认是否安装成功,效果如下图:<br><img src="http://fxblog.oss-cn-beijing.aliyuncs.com/node_1_3.png" alt="node下载地址"></p>
-</li>
-</ol>
-<p>##Hello World！<br>下面来学习基于Node.js的第一个程序 – Hello World！</p>
-<ol>
-<li><p>新创建一个js文件，随便命名为hello.js，然后打开文件，写入如下代码</p>
-<p> console.log(“Hello World”);</p>
-</li>
-</ol>
-<p>保存文件。</p>
-<ol>
-<li>打开终端（命令行） cd 进入创建的hello.js所在的文件夹,然后输入 node hello.js 可以看到终端中输出了Hello World，至此，第一个node.js程序就完成啦~效果如下图：<br><img src="http://fxblog.oss-cn-beijing.aliyuncs.com/node_1_4.png" alt="node下载地址"></li>
-</ol>
-<p>##Node.js 创建第一个服务端应用<br>当我们使用Java来写服务端代码时，我们需要Tomcat或者Nigix的HTTP服务器，并配上相应的模块或者框架，这样就可以理解为整个”接收 HTTP 请求并提供 Web 页面”的需求根本不需 要 Java 来处理。不过，对于 Node.js来说，概念完全不同，使用 Node.js 时，不仅仅实现一个应用，同时还实现了整个 HTTP 服务器。也可以理解为 Node.js本身具备了HTTP服务器的功能。</p>
-<p>我们创建 Node.js 第一个应用前，先了解下 Node.js 应用是由哪几部分组成的：</p>
-<ul>
-<li><p>引入 required 模块：我们可以使用 require 指令来载入 Node.js 模块。</p>
-</li>
-<li><p>创建服务器：服务器可以监听客户端的请求，类似于 Apache 、Nginx 等 HTTP 服务器。</p>
-</li>
-<li><p>接收请求与响应请求 服务器很容易创建，客户端可以使用浏览器或终端发送 HTTP 请求，服务器接收请求后返回响应数据。</p>
-</li>
-</ul>
-<h3 id="创建-Node-js-应用"><a href="#创建-Node-js-应用" class="headerlink" title="创建 Node.js 应用"></a>创建 Node.js 应用</h3><p>创建一个js文件，假如我们创建一个名为server.js的文件，打开文件编辑。</p>
-<ol>
-<li><p>引入 required 模块<br>我们使用 require 指令来载入 http 模块，并将实例化的 HTTP 赋值给变量 http，代码如下：</p>
-<p> var http = require(“http”);</p>
-</li>
-<li><p>创建服务器</p>
-</li>
-</ol>
-<p>声明服务器监听的端口</p>
-<pre><code>var port = 3000;
-var hostname = &apos;127.0.0.1&apos;;
-</code></pre><p>创建服务器</p>
-<pre><code>var server = http.createServer((req, res) =&gt; {
-  res.statusCode = 200;
-  res.setHeader(&apos;Content-Type&apos;, &apos;text/plain&apos;);
-  res.end(&apos;Hello World\n&apos;);
-});
-</code></pre><p>监听端口</p>
-<pre><code>server.listen(port, hostname, () =&gt; {
-  console.log(`Server running at http://${hostname}:${port}/`);
-});
-</code></pre><ol>
-<li>启动服务器<br>终端进入server.js所在的文件夹，输入 node server.js，可以看到如下图的效果则第一个node.js服务端应用就创建好了。<br><img src="http://fxblog.oss-cn-beijing.aliyuncs.com/node_1_5.png" alt="node下载地址"></li>
-</ol>
-<p><img src="http://fxblog.oss-cn-beijing.aliyuncs.com/node_1_6.png" alt="node下载地址"></p>
+        <p><a href="http://www.haoyunbang.cn/" target="_blank" rel="external">助您更快好孕!</a></p>
 
       
 
@@ -279,21 +213,6 @@ var hostname = &apos;127.0.0.1&apos;;
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Node.js</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 
       
@@ -344,7 +263,7 @@ var hostname = &apos;127.0.0.1&apos;;
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://fangx.me/2016/09/28/Node-js开发之环境搭建/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://fangx.me/haoyunbang.html" alt="微信分享二维码">
     </div>
 </div>
 
@@ -358,20 +277,15 @@ var hostname = &apos;127.0.0.1&apos;;
   
 <nav id="article-nav">
   
-    <a href="/2016/09/28/Node-js开发之NPM使用介绍/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/shadowsocks.html" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Node.js开发之NPM使用介绍
+          教你如何使用Shadowsocks优雅眺望墙外风景
         
       </div>
     </a>
   
-  
-    <a href="/2016/03/20/RxJava3/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">RxJava基础入门系列(三)</div>
-      <i class="icon-circle-right"></i>
-    </a>
   
 </nav>
 
@@ -497,7 +411,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">NPM</a>
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -505,7 +419,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+                <a href="javascript:void(0)" class="js-tag color4">NPM</a>
               </li>
              
               <li class="article-tag-list-item">

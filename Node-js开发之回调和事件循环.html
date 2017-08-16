@@ -6,49 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://fangx.me">
-  <title>教你如何使用Shadowsocks优雅眺望墙外风景 | fangx</title>
+  <title>Node.js开发之回调和事件循环 | fangx</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="本文将一步步教你如何使用亚马逊云服务AWS+Shadowsocks搭建自己的代理服务，轻松方便眺望墙外风景，再也不用忍受VPN被封掉，插件不好用，花钱买了翻墙服务不稳定等坑爹情况，拥有自己的代理服务，让我们来一起装逼一起飞。">
-<meta name="keywords" content="shadowsocks,翻墙">
+  <meta name="description" content="Node.js回调函数通过之前的学习我们了解到，Node.js 使用了一个事件驱动、非阻塞式 I/O 的模型。所以我们可以理解为在使用Node.js写程序时会大量的使用异步编程，而Node.js 异步编程的直接体现就是回调。">
+<meta name="keywords" content="Node.js,JavaScript">
 <meta property="og:type" content="article">
-<meta property="og:title" content="教你如何使用Shadowsocks优雅眺望墙外风景">
-<meta property="og:url" content="http://fangx.me/2016/02/28/shadowsocks/index.html">
+<meta property="og:title" content="Node.js开发之回调和事件循环">
+<meta property="og:url" content="http://fangx.me/Node-js开发之回调和事件循环.html">
 <meta property="og:site_name" content="fangx">
-<meta property="og:description" content="本文将一步步教你如何使用亚马逊云服务AWS+Shadowsocks搭建自己的代理服务，轻松方便眺望墙外风景，再也不用忍受VPN被封掉，插件不好用，花钱买了翻墙服务不稳定等坑爹情况，拥有自己的代理服务，让我们来一起装逼一起飞。">
+<meta property="og:description" content="Node.js回调函数通过之前的学习我们了解到，Node.js 使用了一个事件驱动、非阻塞式 I/O 的模型。所以我们可以理解为在使用Node.js写程序时会大量的使用异步编程，而Node.js 异步编程的直接体现就是回调。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://fxblog.oss-cn-beijing.aliyuncs.com/aws_1.png">
-<meta property="og:image" content="http://fxblog.oss-cn-beijing.aliyuncs.com/aws_2.png">
-<meta property="og:image" content="http://fxblog.oss-cn-beijing.aliyuncs.com/aws_3.png">
-<meta property="og:image" content="http://fxblog.oss-cn-beijing.aliyuncs.com/aws_4.png">
-<meta property="og:image" content="http://fxblog.oss-cn-beijing.aliyuncs.com/aws_5.png">
-<meta property="og:image" content="http://fxblog.oss-cn-beijing.aliyuncs.com/aws_6.png">
-<meta property="og:image" content="http://fxblog.oss-cn-beijing.aliyuncs.com/aws_7.png">
-<meta property="og:image" content="http://fxblog.oss-cn-beijing.aliyuncs.com/aws_8.png">
-<meta property="og:image" content="http://fxblog.oss-cn-beijing.aliyuncs.com/aws_9.png">
-<meta property="og:image" content="http://fxblog.oss-cn-beijing.aliyuncs.com/aws_10.png">
-<meta property="og:image" content="http://fxblog.oss-cn-beijing.aliyuncs.com/aws_11.png">
-<meta property="og:image" content="http://fxblog.oss-cn-beijing.aliyuncs.com/aws_28.png">
-<meta property="og:image" content="http://fxblog.oss-cn-beijing.aliyuncs.com/aws_13.png">
-<meta property="og:image" content="http://fxblog.oss-cn-beijing.aliyuncs.com/aws_14.png">
-<meta property="og:image" content="http://fxblog.oss-cn-beijing.aliyuncs.com/aws_15.png">
-<meta property="og:image" content="http://fxblog.oss-cn-beijing.aliyuncs.com/aws_16.png">
-<meta property="og:image" content="http://fxblog.oss-cn-beijing.aliyuncs.com/aws_17.png">
-<meta property="og:image" content="http://fxblog.oss-cn-beijing.aliyuncs.com/aws_18.png">
-<meta property="og:image" content="http://fxblog.oss-cn-beijing.aliyuncs.com/aws_19.png">
-<meta property="og:image" content="http://fxblog.oss-cn-beijing.aliyuncs.com/aws_20.png">
-<meta property="og:image" content="http://fxblog.oss-cn-beijing.aliyuncs.com/aws_21.png">
-<meta property="og:image" content="http://fxblog.oss-cn-beijing.aliyuncs.com/aws_22.png">
-<meta property="og:image" content="http://fxblog.oss-cn-beijing.aliyuncs.com/aws_23.png">
-<meta property="og:image" content="http://fxblog.oss-cn-beijing.aliyuncs.com/aws_24.png">
-<meta property="og:image" content="http://fxblog.oss-cn-beijing.aliyuncs.com/aws_25.png">
-<meta property="og:image" content="http://fxblog.oss-cn-beijing.aliyuncs.com/aws_26.png">
-<meta property="og:image" content="http://fxblog.oss-cn-beijing.aliyuncs.com/aws_27.png">
-<meta property="og:image" content="http://fxblog.oss-cn-beijing.aliyuncs.com/weixin_pay.JPG">
-<meta property="og:updated_time" content="2016-03-08T05:34:32.000Z">
+<meta property="og:image" content="http://fxblog.oss-cn-beijing.aliyuncs.com/event_loop.jpg">
+<meta property="og:updated_time" content="2016-10-27T10:04:06.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="教你如何使用Shadowsocks优雅眺望墙外风景">
-<meta name="twitter:description" content="本文将一步步教你如何使用亚马逊云服务AWS+Shadowsocks搭建自己的代理服务，轻松方便眺望墙外风景，再也不用忍受VPN被封掉，插件不好用，花钱买了翻墙服务不稳定等坑爹情况，拥有自己的代理服务，让我们来一起装逼一起飞。">
-<meta name="twitter:image" content="http://fxblog.oss-cn-beijing.aliyuncs.com/aws_1.png">
+<meta name="twitter:title" content="Node.js开发之回调和事件循环">
+<meta name="twitter:description" content="Node.js回调函数通过之前的学习我们了解到，Node.js 使用了一个事件驱动、非阻塞式 I/O 的模型。所以我们可以理解为在使用Node.js写程序时会大量的使用异步编程，而Node.js 异步编程的直接体现就是回调。">
+<meta name="twitter:image" content="http://fxblog.oss-cn-beijing.aliyuncs.com/event_loop.jpg">
   
     <link rel="alternative" href="/atom.xml" title="fangx" type="application/atom+xml">
   
@@ -188,148 +161,92 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-shadowsocks" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Node-js开发之回调和事件循环" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      教你如何使用Shadowsocks优雅眺望墙外风景
+      Node.js开发之回调和事件循环
     </h1>
   
 
         
-        <a href="/2016/02/28/shadowsocks/" class="archive-article-date">
-  	<time datetime="2016-02-28T02:30:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-02-28</time>
+        <a href="/Node-js开发之回调和事件循环.html" class="archive-article-date">
+  	<time datetime="2016-10-27T06:47:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-10-27</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>本文将一步步教你如何使用亚马逊云服务AWS+Shadowsocks搭建自己的代理服务，轻松方便眺望墙外风景，再也不用忍受VPN被封掉，插件不好用，花钱买了翻墙服务不稳定等坑爹情况，拥有自己的代理服务，让我们来一起装逼一起飞。<br><a id="more"></a></p>
-<h2 id="为什么要使用AWS？"><a href="#为什么要使用AWS？" class="headerlink" title="为什么要使用AWS？"></a>为什么要使用AWS？</h2><p>因为免费用一年。。。。。。</p>
-<h2 id="什么是Shadowsocks？"><a href="#什么是Shadowsocks？" class="headerlink" title="什么是Shadowsocks？"></a>什么是Shadowsocks？</h2><p>Shadowsocks（中文名称：影梭）是使用Python等语言开发的、基于Apache许可证开源的代理软件。Shadowsocks使用socks5代理，用于保护网络流量。在中国大陆被广泛用于突破防火长城（GFW），以浏览被封锁的内容。</p>
-<p>Shadowsocks分为服务器端和客户端。在使用之前，需要先将服务器端部署在支持Python的服务器上面，然后通过客户端连接并创建本地代理。此外用户也可以选择购买基于Shadowsocks的商业服务，以获得更加稳定可靠的服务，或者免去自行部署的麻烦。—–来自<a href="https://zh.wikipedia.org/wiki/Shadowsocks" target="_blank" rel="external">维基百科</a> </p>
-<h2 id="为什么要使用Shadowsocks？"><a href="#为什么要使用Shadowsocks？" class="headerlink" title="为什么要使用Shadowsocks？"></a>为什么要使用Shadowsocks？</h2><p>这么多年与GFW的抗争中，先后使用了GoAgent，红杏插件，土行孙等或免费或付费的工具，但总是会遇到诸多问题，要么用着用着不能用了，要么很不稳定，而且有的要付费，付费没问题，用的不爽问题就很大啦~额~</p>
-<p>Shadowsocks在广大翻墙群众中非常流行，有许多基于Shadowsocks搭建的付费VPN服务，用它在自己服务器上搭建代理的朋友则是更多。其影响力之大，以至于官方都坐不住了，向原作者clowwindy施加压力，使得作者删除了在Github上的代码库。</p>
-<p>基于此，遂下定决心搭一个自己的Shadowsocks代理服务。</p>
-<h2 id="第一步申请亚马逊云服务AWS"><a href="#第一步申请亚马逊云服务AWS" class="headerlink" title="第一步申请亚马逊云服务AWS"></a>第一步申请亚马逊云服务AWS</h2><ol>
-<li><a href="http://aws.amazon.com/cn/" target="_blank" rel="external">点击打开AWS官网</a><br> 如下图点击注册：<br> <img src="http://fxblog.oss-cn-beijing.aliyuncs.com/aws_1.png" alt="AWS主页图"></li>
-<li>注册账号<br><img src="http://fxblog.oss-cn-beijing.aliyuncs.com/aws_2.png" alt="注册页面"><br><img src="http://fxblog.oss-cn-beijing.aliyuncs.com/aws_3.png" alt="注册页面"><br><img src="http://fxblog.oss-cn-beijing.aliyuncs.com/aws_4.png" alt="注册页面"></li>
-<li>认证流程<br><img src="http://fxblog.oss-cn-beijing.aliyuncs.com/aws_5.png" alt="注册页面"><br><img src="http://fxblog.oss-cn-beijing.aliyuncs.com/aws_6.png" alt="注册页面"><br><img src="http://fxblog.oss-cn-beijing.aliyuncs.com/aws_7.png" alt="注册页面"><br><img src="http://fxblog.oss-cn-beijing.aliyuncs.com/aws_8.png" alt="注册页面"><br><img src="http://fxblog.oss-cn-beijing.aliyuncs.com/aws_9.png" alt="注册页面"></li>
-<li>认证完成登陆控制台<br><img src="http://fxblog.oss-cn-beijing.aliyuncs.com/aws_10.png" alt="注册页面"></li>
-</ol>
-<h2 id="第二步创建EC2"><a href="#第二步创建EC2" class="headerlink" title="第二步创建EC2"></a>第二步创建EC2</h2><ol>
-<li>登陆控制台点击如图EC2<br><img src="http://fxblog.oss-cn-beijing.aliyuncs.com/aws_11.png" alt="创建EC2"></li>
-<li>进入EC2控制面板如下图点击启动实例<br><img src="http://fxblog.oss-cn-beijing.aliyuncs.com/aws_28.png" alt="创建EC2">  </li>
-<li><p>根据步骤一步步创建实例（记得保存好秘钥，连接服务器时需要用到~）<br> <img src="http://fxblog.oss-cn-beijing.aliyuncs.com/aws_13.png" alt="创建EC2"><br> <img src="http://fxblog.oss-cn-beijing.aliyuncs.com/aws_14.png" alt="创建EC2"><br> <img src="http://fxblog.oss-cn-beijing.aliyuncs.com/aws_15.png" alt="创建EC2"><br> <img src="http://fxblog.oss-cn-beijing.aliyuncs.com/aws_16.png" alt="创建EC2"><br> <img src="http://fxblog.oss-cn-beijing.aliyuncs.com/aws_17.png" alt="创建EC2"></p>
-<p>至此，服务器创建完成，下面就连接进去~</p>
+        <h3 id="Node-js回调函数"><a href="#Node-js回调函数" class="headerlink" title="Node.js回调函数"></a>Node.js回调函数</h3><p>通过之前的学习我们了解到，Node.js 使用了一个事件驱动、非阻塞式 I/O 的模型。所以我们可以理解为在使用Node.js写程序时会大量的使用异步编程，而Node.js 异步编程的直接体现就是回调。<br><a id="more"></a></p>
+<h4 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h4><p>异步编程依托于回调来实现，但不能说使用了回调后程序就异步化了。<br>回调函数在完成任务后就会被调用，Node 使用了大量的回调函数，Node 所有 API 都支持回调函数。</p>
+<p>举个栗子：我们可以使用Node.js去读取文件，我们知道，读取文件是最基本的IO操作。什么？你不知道IO是什么，好吧，最通俗的理解就是Input与Output的缩写，所以文件读写是很基本的IO操作，至于其它的想深入理解可以去google一下~好啦回归正题，我们想要读取一个文件，而IO操作是比较耗时的，文件大了更可怕，但是不用担心，Node.js异步变成支持我们在读取文件的时候继续去执行其他的操作，我们只需要给文件读取设置一个监听（也就是写个回调函数），当文件读取完之后我们的回调函数就会被调用，我们可以把文件的内容作为回调函数的参数收到。这样在执行代码时就没有阻塞或等待文件 I/O 操作。这就大大提高了 Node.js 的性能，可以处理大量的并发请求。</p>
+<h4 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h4><ol>
+<li><p>首先创建一个用户测试的文件 test.txt ,可以随便粘贴一段内容到文件里，我们会用代码把这些内容读取出来，譬如我们写入如下内容：</p>
+<p> 好孕帮-助您更快好孕</p>
+</li>
+<li><p>然后来看一个用同步阻塞方式实现IO操作的代码</p>
 </li>
 </ol>
-<h2 id="第三步连接服务器安装配置Shadowsocks"><a href="#第三步连接服务器安装配置Shadowsocks" class="headerlink" title="第三步连接服务器安装配置Shadowsocks"></a>第三步连接服务器安装配置Shadowsocks</h2><p>由于作者使用的是MAC，所以以下都是使用MAC讲解连接服务器，如果是windows用户可以使用putty连接</p>
+<ul>
+<li><p>创建 main.js 文件, 代码如下：</p>
+<p>  var fs = require(“fs”);<br>  var data = fs.readFileSync(‘input.txt’);<br>  console.log(data.toString());<br>  console.log(“程序执行结束!”);</p>
+</li>
+<li><p>使用命令运行代码，查看输出结果</p>
+<p>  node main.js</p>
+</li>
+</ul>
+<pre><code>好孕帮-助您更快好孕
+程序执行结束!
+</code></pre><ol>
+<li>最后来看一个用异步非阻塞方式实现IO操作的代码</li>
+</ol>
+<ul>
+<li><p>创建 main.js 文件, 代码如下：</p>
+<p>  var fs = require(“fs”);</p>
+<pre><code>fs.readFile(&apos;input.txt&apos;, function (err, data) {
+ if (err) return console.error(err);
+ console.log(data.toString());
+});
+console.log(&quot;程序执行结束!&quot;);
+</code></pre></li>
+<li><p>使用命令运行代码，查看输出结果</p>
+<p>  node main.js</p>
+<p>  程序执行结束!<br>  好孕帮-助您更快好孕</p>
+</li>
+</ul>
 <ol>
-<li>首先cd到下载的秘钥目录执行命令修改文件权限<br><img src="http://fxblog.oss-cn-beijing.aliyuncs.com/aws_18.png" alt="登陆服务器"></li>
-<li><p>执行命令: ssh -i 你命名的秘钥名.pem ubuntu@你的服务器节点ip</p>
-<p>服务器节点ip可从下图中找到，即共有DNS<br><img src="http://fxblog.oss-cn-beijing.aliyuncs.com/aws_19.png" alt="登陆服务器"><br><img src="http://fxblog.oss-cn-beijing.aliyuncs.com/aws_20.png" alt="登陆服务器"></p>
+<li>通过对比第2步和第3步中的输出可以发现,2中的文件读取完之后才结束程序，而3不需要等待文件读取完，就可以在读取文件时同时执行接下来的代码，大大提高了程序的性能。 </li>
+</ol>
+<h3 id="Node-js-事件循环"><a href="#Node-js-事件循环" class="headerlink" title="Node.js 事件循环"></a>Node.js 事件循环</h3><h4 id="基本概念-1"><a href="#基本概念-1" class="headerlink" title="基本概念"></a>基本概念</h4><p>Node.js 是单进程单线程应用程序，但是通过事件和回调支持并发，所以性能非常高。<br>通过上面的学习我们了解了什么回调，接下来我们学习Node.js的事件机制，其实Node.js 基本上所有的事件机制都是用设计模式中<a href="http://www.cnblogs.com/Olive116/p/5270948.html" target="_blank" rel="external">观察者模式</a>实现。</p>
+<p>Node.js程序是单线程的，我们可以简单的理解程序启动就类似进入到一个while(true)的事件循环，每个异步事件都生成一个事件观察者，如果有事件发生就调用该回调函数。针对服务端而言就是说，每一个 API 都是一个事件，并作为一个独立线程运行，使用异步函数调用，并处理并发。</p>
+<h4 id="事件驱动程序模型"><a href="#事件驱动程序模型" class="headerlink" title="事件驱动程序模型"></a>事件驱动程序模型</h4><p>Node.js 使用事件驱动模型，当web server接收到请求，就把它关闭然后进行处理，然后去服务下一个web请求。当这个请求完成，它被放回处理队列，当到达队列开头，这个结果被返回给用户。</p>
+<p>这个模型非常高效可扩展性非常强，因为webserver一直接受请求而不等待任何读写操作。（这也被称之为非阻塞式IO或者事件驱动IO）<br>在事件驱动模型中，会生成一个主循环来监听事件，当检测到事件时触发回调函数。</p>
+<p>大概模型如下图：<br><img src="http://fxblog.oss-cn-beijing.aliyuncs.com/event_loop.jpg" alt="事件驱动程序模型图"></p>
+<p>整个事件驱动的流程就是这么实现的，非常简洁。有点类似于观察者模式，事件相当于一个主题(Subject)，而所有注册到这个事件上的处理函数相当于观察者(Observer)。</p>
+<h3 id="Node-js-EventEmitter"><a href="#Node-js-EventEmitter" class="headerlink" title="Node.js EventEmitter"></a>Node.js EventEmitter</h3><h4 id="基本概念-2"><a href="#基本概念-2" class="headerlink" title="基本概念"></a>基本概念</h4><p>events是Node.js的一个核心模块（如果你还不了解什么是模块，不要着急，后续我们会讲，我们可以简单的理解为模块是Node.js的内置方法，或者用我们之前的理解就是模块就像是一个包，只不过这个包是内置好的）。</p>
+<p>events 模块只提供了一个对象： events.EventEmitter。EventEmitter 的核心就是事件触发与事件监听器功能的封装。<br>你可以通过require(“events”);来访问该模块。</p>
+<p>Node.js 所有的异步 I/O 操作在完成时都会发送一个事件到事件队列。</p>
+<p>Node.js里面的许多对象都会分发事件：一个net.Server对象会在每次有新连接时分发一个事件， 一个fs.readStream对象会在文件被打开的时候发出一个事件。 所有这些产生事件的对象都是 events.EventEmitter 的实例。</p>
+<h4 id="举例说明"><a href="#举例说明" class="headerlink" title="举例说明"></a>举例说明</h4><ul>
+<li>创建event.js文件</li>
+<li><p>写入如下代码</p>
+<p>  // 引入 events 模块<br>  var events = require(‘events’);<br>  // 创建 eventEmitter 对象<br>  var event = new events.EventEmitter();</p>
+<p>  event.on(‘test’, function() { </p>
+<pre><code>console.log(&apos;test 事件触发&apos;); 
+</code></pre><p>  }); </p>
+<p>  console.log(‘准备执行事件’); </p>
+<p>  setTimeout(function() { </p>
+<pre><code>event.emit(&apos;test&apos;); 
+</code></pre><p>  }, 1000);</p>
 </li>
-<li><p>至此连接进服务器，然后安装shadowsocks依赖</p>
-<ul>
-<li>获取root权限： sudo -s </li>
-<li>更新apt-get： apt-get update </li>
-<li>安装python包管理工具pip：apt-get install python-pip </li>
-<li>安装shadowsocks：pip install shadowsocks</li>
 </ul>
-</li>
-<li><p>配置shadowsocks  使用vi编辑，不会的同学可以搜索一下~<br>vi /etc/shadowsocks.json</p>
 <ul>
-<li>单用户配置</li>
+<li>运行代码 node event.js ，可以看到控制台先输出 <code>准备执行事件</code> ，然后等待1秒后输出 <code>test 事件触发</code>，这段代码可以看出来我们给event注册了事件test的一个监听器，然后我们通过setTimeout设置一秒后向 event 对象发送事件 test，此时会调用test 的监听器</li>
 </ul>
-</li>
-</ol>
-<p>{</p>
-<pre><code>&quot;server&quot;:&quot;0.0.0.0&quot;,
-
-&quot;server_port&quot;:你的端口,
-
-&quot;local_address&quot;: &quot;127.0.0.1&quot;,
-
-&quot;local_port&quot;:1080,
-
-&quot;password&quot;:&quot;你的密码&quot;,
-
-&quot;timeout&quot;:300,
-
-&quot;method&quot;:&quot;aes-256-cfb&quot;,
-
-&quot;fast_open&quot;: false,
-
-&quot;workers&quot;: 1
-</code></pre><p>}</p>
-<ul>
-<li>多用户多端口</li>
-</ul>
-<p>{</p>
-<pre><code>&quot;server&quot;:&quot;0.0.0.0&quot;,
-
-&quot;local_address&quot;:&quot;127.0.0.1&quot;,
-
-&quot;local_port&quot;:1080,
-
-&quot;port_password&quot;:{
-
-     &quot;8877&quot;:&quot;密码&quot;,
-
-     &quot;8888&quot;:&quot;密码&quot;,
-
-     &quot;8899&quot;:&quot;密码&quot;,
-
-},
-
-&quot;timeout&quot;:300,
-
-&quot;method&quot;:&quot;aes-256-cfb&quot;,
-
-&quot;fast_open&quot;: false
-</code></pre><p>}</p>
-<ol>
-<li><p>开启shadowsocks: ssserver -c /etc/shadowsocks.json -d start</p>
-</li>
-<li><p>开启AWS入站端口 (新添加的规则中端口对应的是第四步中你配置的端口~)<br>  <img src="http://fxblog.oss-cn-beijing.aliyuncs.com/aws_21.png" alt="开启AWS入站端口"><br>  <img src="http://fxblog.oss-cn-beijing.aliyuncs.com/aws_22.png" alt="开启AWS入站端口"><br>  <img src="http://fxblog.oss-cn-beijing.aliyuncs.com/aws_23.png" alt="开启AWS入站端口"></p>
-</li>
-</ol>
-<p>至此服务器配置已全部结束，下面就可以在各种客户端使用了</p>
-<h2 id="第四步配置客户端"><a href="#第四步配置客户端" class="headerlink" title="第四步配置客户端"></a>第四步配置客户端</h2><h3 id="MAC配置"><a href="#MAC配置" class="headerlink" title="MAC配置"></a>MAC配置</h3><ol>
-<li><a href="http://pan.baidu.com/s/1kUueye7" target="_blank" rel="external">点击下载ShadowsocksX客户端</a> </li>
-<li>下载后解压安装，此处可能会受到MAC系统安装控制点困扰可以打开系统偏好设置-&gt;安全性与隐私中允许安装此应用</li>
-<li><p>安装成功后会看到下图图标</p>
-<p> <img src="http://fxblog.oss-cn-beijing.aliyuncs.com/aws_24.png" alt="开启AWS入站端口"></p>
-</li>
-<li><p>点击运行会看到桌面右上角出现下图标识</p>
-<p><img src="http://fxblog.oss-cn-beijing.aliyuncs.com/aws_25.png" alt="开启AWS入站端口"></p>
-</li>
-<li><p>点击图标选择服务器-&gt;打开服务器设定然后填写如下图</p>
-<p><img src="http://fxblog.oss-cn-beijing.aliyuncs.com/aws_26.png" alt="开启AWS入站端口"></p>
-<p><img src="http://fxblog.oss-cn-beijing.aliyuncs.com/aws_27.png" alt="开启AWS入站端口"></p>
-</li>
-<li><p>填写完成后点击右上角小飞机图标打开shadowsocks（建议选择自动代理模式，这样墙内的网站不会走代理~）</p>
-</li>
-</ol>
-<h3 id="Windows配置"><a href="#Windows配置" class="headerlink" title="Windows配置"></a>Windows配置</h3><ol>
-<li><a href="http://pan.baidu.com/s/1dDTmj65" target="_blank" rel="external">点击下载ShadowsocksX客户端</a> </li>
-<li>其他配置和MAC类似~</li>
-</ol>
-<h3 id="IOS配置"><a href="#IOS配置" class="headerlink" title="IOS配置"></a>IOS配置</h3><ol>
-<li>在Appstore搜索下载Shadowsocks</li>
-<li>设置自己的服务器,设置方法同上</li>
-<li>由于IOS版只支持浏览器，有其他需求的可以搭建 Strongswan，实现在 iOS 上连接 VPN，<a href="http://www.jianshu.com/p/2f51144c35c9" target="_blank" rel="external">参考链接</a> </li>
-</ol>
-<h3 id="Android配置"><a href="#Android配置" class="headerlink" title="Android配置"></a>Android配置</h3><ol>
-<li><a href="http://pan.baidu.com/s/1dEcF2It" target="_blank" rel="external">点击下载APK文件</a></li>
-<li>下载后无需root，设置好服务器和帐号信息后即可直接使用。与iOS版本不同，android版是以VPN的方式运行的，也就是说不仅支持浏览器，而且支持其他App</li>
-</ol>
-<h4 id="如果我的文章真的给你带来帮助，可以扫描二维码打赏我哦（一毛就好-只是想验证下我写的东西是否真的能够有人愿意买单-）"><a href="#如果我的文章真的给你带来帮助，可以扫描二维码打赏我哦（一毛就好-只是想验证下我写的东西是否真的能够有人愿意买单-）" class="headerlink" title="如果我的文章真的给你带来帮助，可以扫描二维码打赏我哦（一毛就好~只是想验证下我写的东西是否真的能够有人愿意买单~）"></a>如果我的文章真的给你带来帮助，可以扫描二维码打赏我哦（一毛就好~只是想验证下我写的东西是否真的能够有人愿意买单~）</h4><p> <img src="http://fxblog.oss-cn-beijing.aliyuncs.com/weixin_pay.JPG" alt="微信打赏"></p>
 
       
 
@@ -369,11 +286,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">shadowsocks</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Node.js</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">翻墙</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
         		</li>
       		
 		</ul>
@@ -429,7 +346,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://fangx.me/2016/02/28/shadowsocks/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://fangx.me/Node-js开发之回调和事件循环.html" alt="微信分享二维码">
     </div>
 </div>
 
@@ -443,18 +360,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2016/03/06/RxJava1/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/Node-js开发之使用Express框架构建服务端项目.html" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          RxJava基础入门系列(一)
+          Node.js开发之使用Express框架构建服务端项目
         
       </div>
     </a>
   
   
-    <a href="/2015/08/01/haoyunbang/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">好孕帮</div>
+    <a href="/Node-js开发之NPM使用介绍.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Node.js开发之NPM使用介绍</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -582,7 +499,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">NPM</a>
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -590,7 +507,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+                <a href="javascript:void(0)" class="js-tag color4">NPM</a>
               </li>
              
               <li class="article-tag-list-item">

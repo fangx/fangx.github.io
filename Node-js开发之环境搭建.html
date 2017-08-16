@@ -6,20 +6,27 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://fangx.me">
-  <title>RxJava基础入门系列(三) | fangx</title>
+  <title>Node.js开发环境搭建 | fangx</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="通过前两篇的学习我们已经熟悉了RxJava的基本思想，该如何构建、关联Observable（被观察者）和Observer（观察者）这两个角色以及Observable为我们提供的很多好用的方法。打好了基础，下面就一起来体验我感觉RxJava对于android开发的精华所在，更高X格的 线程控制 —— Schedulers">
-<meta name="keywords" content="rxjava,rxandroid">
+  <meta name="description" content="前言这是一个多种语言百花齐放的时代，各种优秀开发语言都占据不小的使用份额，但是近几年JavaScript的使用增长势头明显是最迅猛的，大有超越Java和C的势头，而且随着Node.js的推出，JavaScript不只可以写前端还可以做服务端开发，大有一统Web端开发的苗头。近几年FaceBook推出的React Native ，微信推出的公众号、小程序也在推动着JavaScript增长的浪潮。">
+<meta name="keywords" content="Node.js,JavaScript">
 <meta property="og:type" content="article">
-<meta property="og:title" content="RxJava基础入门系列(三)">
-<meta property="og:url" content="http://fangx.me/2016/03/20/RxJava3/index.html">
+<meta property="og:title" content="Node.js开发环境搭建">
+<meta property="og:url" content="http://fangx.me/Node-js开发之环境搭建.html">
 <meta property="og:site_name" content="fangx">
-<meta property="og:description" content="通过前两篇的学习我们已经熟悉了RxJava的基本思想，该如何构建、关联Observable（被观察者）和Observer（观察者）这两个角色以及Observable为我们提供的很多好用的方法。打好了基础，下面就一起来体验我感觉RxJava对于android开发的精华所在，更高X格的 线程控制 —— Schedulers">
+<meta property="og:description" content="前言这是一个多种语言百花齐放的时代，各种优秀开发语言都占据不小的使用份额，但是近几年JavaScript的使用增长势头明显是最迅猛的，大有超越Java和C的势头，而且随着Node.js的推出，JavaScript不只可以写前端还可以做服务端开发，大有一统Web端开发的苗头。近几年FaceBook推出的React Native ，微信推出的公众号、小程序也在推动着JavaScript增长的浪潮。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2016-03-21T06:47:59.000Z">
+<meta property="og:image" content="http://fxblog.oss-cn-beijing.aliyuncs.com/node_1_1.png">
+<meta property="og:image" content="http://fxblog.oss-cn-beijing.aliyuncs.com/node_1_2.png">
+<meta property="og:image" content="http://fxblog.oss-cn-beijing.aliyuncs.com/node_1_3.png">
+<meta property="og:image" content="http://fxblog.oss-cn-beijing.aliyuncs.com/node_1_4.png">
+<meta property="og:image" content="http://fxblog.oss-cn-beijing.aliyuncs.com/node_1_5.png">
+<meta property="og:image" content="http://fxblog.oss-cn-beijing.aliyuncs.com/node_1_6.png">
+<meta property="og:updated_time" content="2016-09-28T05:56:44.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="RxJava基础入门系列(三)">
-<meta name="twitter:description" content="通过前两篇的学习我们已经熟悉了RxJava的基本思想，该如何构建、关联Observable（被观察者）和Observer（观察者）这两个角色以及Observable为我们提供的很多好用的方法。打好了基础，下面就一起来体验我感觉RxJava对于android开发的精华所在，更高X格的 线程控制 —— Schedulers">
+<meta name="twitter:title" content="Node.js开发环境搭建">
+<meta name="twitter:description" content="前言这是一个多种语言百花齐放的时代，各种优秀开发语言都占据不小的使用份额，但是近几年JavaScript的使用增长势头明显是最迅猛的，大有超越Java和C的势头，而且随着Node.js的推出，JavaScript不只可以写前端还可以做服务端开发，大有一统Web端开发的苗头。近几年FaceBook推出的React Native ，微信推出的公众号、小程序也在推动着JavaScript增长的浪潮。">
+<meta name="twitter:image" content="http://fxblog.oss-cn-beijing.aliyuncs.com/node_1_1.png">
   
     <link rel="alternative" href="/atom.xml" title="fangx" type="application/atom+xml">
   
@@ -159,91 +166,86 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-RxJava3" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Node-js开发之环境搭建" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      RxJava基础入门系列(三)
+      Node.js开发环境搭建
     </h1>
   
 
         
-        <a href="/2016/03/20/RxJava3/" class="archive-article-date">
-  	<time datetime="2016-03-20T01:39:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-03-20</time>
+        <a href="/Node-js开发之环境搭建.html" class="archive-article-date">
+  	<time datetime="2016-09-28T01:20:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-09-28</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>通过前两篇的学习我们已经熟悉了RxJava的基本思想，该如何构建、关联Observable（被观察者）和Observer（观察者）这两个角色以及Observable为我们提供的很多好用的方法。打好了基础，下面就一起来体验我感觉RxJava对于android开发的精华所在，更高X格的 <font color="green">线程控制 —— Schedulers</font><br><a id="more"></a></p>
-<h2 id="Schedulers是waht"><a href="#Schedulers是waht" class="headerlink" title="Schedulers是waht?"></a>Schedulers是waht?</h2><p>在RxJava 中，Scheduler —— 调度器，相当于线程控制器，RxJava 通过它来指定每一段代码应该运行在什么样的线程。明白不？就像在android中一般程序是运行在主线程中的，如果我们 new Thread 则可以让部分方法操作运行在独立线程中避免阻塞主线程，而RxJava通过Scheduler封装了new Thread的过程，意味着我们不在需要考虑多线程的问题（爽歪歪~）,当然RxJava做了更多，继续向下看~</p>
-<p>在不指定线程的情况下， RxJava 遵循的是线程不变的原则，即：在哪个线程调用 subscribe()，就在哪个线程生产事件；在哪个线程生产事件，就在哪个线程消费事件。如果需要切换线程，就需要用到 Schedulers （调度器）。</p>
-<h2 id="RxJava提供了5种调度器："><a href="#RxJava提供了5种调度器：" class="headerlink" title="RxJava提供了5种调度器："></a>RxJava提供了5种调度器：</h2><ul>
-<li>.io()</li>
-<li>.computation()</li>
-<li>.immediate()</li>
-<li>.newThread()</li>
-<li>.trampoline()</li>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这是一个多种语言百花齐放的时代，各种优秀开发语言都占据不小的使用份额，但是近几年JavaScript的使用增长势头明显是最迅猛的，大有超越Java和C的势头，而且随着Node.js的推出，JavaScript不只可以写前端还可以做服务端开发，大有一统Web端开发的苗头。近几年FaceBook推出的React Native ，微信推出的公众号、小程序也在推动着JavaScript增长的浪潮。<br><a id="more"></a><br>本系列课程将带领大家入门Node.js开发，因为最近微信推出的小程序特别火，所以我们的目标就是让大家可以用Node.js实现一个小程序的server端。</p>
+<h1 id="储备点基本概念"><a href="#储备点基本概念" class="headerlink" title="储备点基本概念"></a>储备点基本概念</h1><h3 id="Node-js是什么？"><a href="#Node-js是什么？" class="headerlink" title="Node.js是什么？"></a>Node.js是什么？</h3><p>Node.js是一个Javascript运行环境(runtime)。实际上它是对Google V8引擎进行了封装。V8引 擎执行Javascript的速度非常快，性能非常好。Node.js对一些特殊用例进行了优化，提供了替代的API，使得V8在非浏览器环境下运行得更好。</p>
+<p>##安装Node.js</p>
+<ol>
+<li>去官网下载自己操作系统对应的Node安装文件，作者用的MAC看到的界面如下图  <a href="https://nodejs.org/en/" target="_blank" rel="external">附上下载地址</a></li>
+</ol>
+<p><img src="http://fxblog.oss-cn-beijing.aliyuncs.com/node_1_1.png" alt="node下载地址"></p>
+<p>因为只是入门讲解，所以我们下载稳定版，感兴趣的或者以后深入之后可以下载最新版体验node新特性</p>
+<ol>
+<li><p>下载之后直接点击安装，如下图：<br><img src="http://fxblog.oss-cn-beijing.aliyuncs.com/node_1_2.png" alt="node下载地址"><br>一路继续点下去就好~（windows可能涉及到选择安装位置，请自行选择~）</p>
+</li>
+<li><p>安装完之后，打开终端（命令行）输入 node –version命令确认是否安装成功,效果如下图:<br><img src="http://fxblog.oss-cn-beijing.aliyuncs.com/node_1_3.png" alt="node下载地址"></p>
+</li>
+</ol>
+<p>##Hello World！<br>下面来学习基于Node.js的第一个程序 – Hello World！</p>
+<ol>
+<li><p>新创建一个js文件，随便命名为hello.js，然后打开文件，写入如下代码</p>
+<p> console.log(“Hello World”);</p>
+</li>
+</ol>
+<p>保存文件。</p>
+<ol>
+<li>打开终端（命令行） cd 进入创建的hello.js所在的文件夹,然后输入 node hello.js 可以看到终端中输出了Hello World，至此，第一个node.js程序就完成啦~效果如下图：<br><img src="http://fxblog.oss-cn-beijing.aliyuncs.com/node_1_4.png" alt="node下载地址"></li>
+</ol>
+<p>##Node.js 创建第一个服务端应用<br>当我们使用Java来写服务端代码时，我们需要Tomcat或者Nigix的HTTP服务器，并配上相应的模块或者框架，这样就可以理解为整个”接收 HTTP 请求并提供 Web 页面”的需求根本不需 要 Java 来处理。不过，对于 Node.js来说，概念完全不同，使用 Node.js 时，不仅仅实现一个应用，同时还实现了整个 HTTP 服务器。也可以理解为 Node.js本身具备了HTTP服务器的功能。</p>
+<p>我们创建 Node.js 第一个应用前，先了解下 Node.js 应用是由哪几部分组成的：</p>
+<ul>
+<li><p>引入 required 模块：我们可以使用 require 指令来载入 Node.js 模块。</p>
+</li>
+<li><p>创建服务器：服务器可以监听客户端的请求，类似于 Apache 、Nginx 等 HTTP 服务器。</p>
+</li>
+<li><p>接收请求与响应请求 服务器很容易创建，客户端可以使用浏览器或终端发送 HTTP 请求，服务器接收请求后返回响应数据。</p>
+</li>
 </ul>
-<p>让我们一个一个的来看下它们：</p>
-<h4 id="Schedulers-io"><a href="#Schedulers-io" class="headerlink" title="Schedulers.io()"></a>Schedulers.io()</h4><p>个人感觉真正开发中最常用的一种调度器，I/O 操作（读写文件、读写数据库、网络信息交互等）所使用的 Scheduler。行为模式和 newThread() 差不多，区别在于 io() 的内部实现是是用一个无数量上限的线程池，可以重用空闲的线程，因此多数情况下 io() 比 newThread() 更有效率。不要把计算工作放在 io() 中，可以避免创建不必要的线程。</p>
-<p>重点需要注意的是线程池是无限制的，大量的I/O调度操作将创建许多个线程并占用内存。我们需要在性能和简捷两者之间找到一个有效的平衡点。</p>
-<h4 id="Schedulers-computation"><a href="#Schedulers-computation" class="headerlink" title="Schedulers.computation()"></a>Schedulers.computation()</h4><p>计算所使用的 Scheduler。这个计算指的是 CPU 密集型计算，即不会被 I/O 等操作限制性能的操作，例如图形的计算。这个 Scheduler 使用的固定的线程池，大小为 CPU 核数。不要把 I/O 操作放在 computation() 中，否则 I/O 操作的等待时间会浪费 CPU。</p>
-<p>它也是许多RxJava方法的默认调度器：buffer() , debounce() , delay() , interval() , sample() , skip()等。</p>
-<h4 id="Schedulers-immediate"><a href="#Schedulers-immediate" class="headerlink" title="Schedulers.immediate()"></a>Schedulers.immediate()</h4><p>直接在当前线程运行，相当于不指定线程。这是默认的 Scheduler。</p>
-<p>它是timeout() , timeInterval() ,以及timestamp()方法默认的调度器。额，可能你不知道这几个方法是啥，我也不知道，不要管，深入之后你会懂的~</p>
-<h4 id="Schedulers-newThread"><a href="#Schedulers-newThread" class="headerlink" title="Schedulers.newThread()"></a>Schedulers.newThread()</h4><p>这个调度器正如它所看起来的那样：它为指定任务启动一个新的线程。</p>
-<h4 id="Schedulers-trampoline"><a href="#Schedulers-trampoline" class="headerlink" title="Schedulers.trampoline()"></a>Schedulers.trampoline()</h4><p>当我们想在当前线程执行一个任务时，并不是立即，我们可以用.trampoline()将它入队。这个调度器将会处理它的队列并且按序运行队列中每一个任务。它是repeat()和retry()方法默认的调度器。</p>
-<p>另外， Android 还有一个专用的  <font color="green">AndroidSchedulers.mainThread()</font>，它指定的操作将在 Android 主线程运行。这个调度器在RxJava包中，大家熟记这个调度器，因为这就是我所说的精华所在，实际开发中会大量用到！</p>
-<h2 id="SubscribeOn-and-ObserveOn"><a href="#SubscribeOn-and-ObserveOn" class="headerlink" title="SubscribeOn and ObserveOn"></a>SubscribeOn and ObserveOn</h2><p>我们学到了各种调度器。但是我们如何利用它们来 ​​和Observables一起工作呢？RxJava提供了subscribeOn()方法来用于每个Observable对象。subscribeOn()方法用Scheduler来作为参数并在这个Scheduler上执行Observable调用。</p>
-<p>通俗点说就是通过subscribeOn()方法我们可以声明创建（或者说产生）Observable的过程是发生在什么线程中的。</p>
-<p>举个例子：</p>
-<pre><code>Observable.from(getDataFromDb())
-.subscribeOn(Schedulers.io())
-.subscribe(new Observer&lt;Chat&gt;() {
-    @Override
-    public void onCompleted() {
-    }
+<h3 id="创建-Node-js-应用"><a href="#创建-Node-js-应用" class="headerlink" title="创建 Node.js 应用"></a>创建 Node.js 应用</h3><p>创建一个js文件，假如我们创建一个名为server.js的文件，打开文件编辑。</p>
+<ol>
+<li><p>引入 required 模块<br>我们使用 require 指令来载入 http 模块，并将实例化的 HTTP 赋值给变量 http，代码如下：</p>
+<p> var http = require(“http”);</p>
+</li>
+<li><p>创建服务器</p>
+</li>
+</ol>
+<p>声明服务器监听的端口</p>
+<pre><code>var port = 3000;
+var hostname = &apos;127.0.0.1&apos;;
+</code></pre><p>创建服务器</p>
+<pre><code>var server = http.createServer((req, res) =&gt; {
+  res.statusCode = 200;
+  res.setHeader(&apos;Content-Type&apos;, &apos;text/plain&apos;);
+  res.end(&apos;Hello World\n&apos;);
+});
+</code></pre><p>监听端口</p>
+<pre><code>server.listen(port, hostname, () =&gt; {
+  console.log(`Server running at http://${hostname}:${port}/`);
+});
+</code></pre><ol>
+<li>启动服务器<br>终端进入server.js所在的文件夹，输入 node server.js，可以看到如下图的效果则第一个node.js服务端应用就创建好了。<br><img src="http://fxblog.oss-cn-beijing.aliyuncs.com/node_1_5.png" alt="node下载地址"></li>
+</ol>
+<p><img src="http://fxblog.oss-cn-beijing.aliyuncs.com/node_1_6.png" alt="node下载地址"></p>
 
-    @Override
-    public void onError(Throwable e) {
-    }
-
-    @Override
-    public void onNext(Chat chat) {
-
-
-    }
-    });
-</code></pre><p>上面的例子表示我们需要从数据库中读取到我们保存的聊天信息，然后转换成Observable对象，然后发射。由于从数据库中读取数据会减慢I/O操作，会阻塞主线程，所以为了优化这个过程我们可以通过subscribeOn(Schedulers.io())声明这个过程发生在独立线程中，这样我们就不会因为操作数据库阻塞主线程啦，是不是很diao~</p>
-<p>通过上面的例子我们成功的把阻塞主线程的操作放到独立io线程中执行，但是这是如果我们在Observer 的 onNext方法中操作界面时会报经常碰到的无法再一个非UI线程来修改UI得错误，也就是执行onNext的时候我们仍然处于subscribeOn所创建的线程中，而不是主线程。这是该咋办呢。。。莫慌，RxJava AND RxAndroid已经帮我们考虑好了，这时我们的observeOn()方法就派上用场了~observeOn()方法将会在指定的调度器上返回结果，我们改写上例中的代码如下：</p>
-<pre><code>Observable.from(getDataFromDb())
-.subscribeOn(Schedulers.io())
-.observeOn(AndroidSchedulers.mainThread())
-.subscribe(new Observer&lt;Chat&gt;() {
-    @Override
-    public void onCompleted() {
-    }
-
-    @Override
-    public void onError(Throwable e) {
-    }
-
-    @Override
-    public void onNext(Chat chat) {
-
-
-    }
-    });
-</code></pre><p>就这么简单！这样我们就将Observer的onNext等回调处理拉回到主线程上来了~是不是炒鸡方便！</p>
-<h3 id="本篇完"><a href="#本篇完" class="headerlink" title="本篇完"></a>本篇完</h3><p>学完这篇你应该更能体会到RxJava对于android开发的用处了吧，当我们因为阻塞主线程需要创建并发程序时，我们可以毫不犹豫的抛弃各种Thread、Handler、Asynctask,因为RxJava实在是太方便了，有了它不用再考虑实现、同步、线程、平台限制、平台变化。</p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>好了，到这里，我所要讲的入门已经完成了，当然RxJava还有很多很多牛X的东西譬如各种用起来相当爽，让人高潮不断的变换操作以及 与Retrofit 的完美结合等等等，这些之后可能我也会写，如果上述三篇你都能理解，那么我们入门的目的就达到了，现在你已经具备了在实际项目中使用RxJava 的能力，后续你可以在具体使用过程中慢慢的自己去学习RxJava更多更高级的用法~</p>
-<h3 id="有兴趣的朋友可以看看我写的开源项目-里面使用了RxJava"><a href="#有兴趣的朋友可以看看我写的开源项目-里面使用了RxJava" class="headerlink" title="有兴趣的朋友可以看看我写的开源项目,里面使用了RxJava"></a>有兴趣的朋友可以看看我写的开源项目,里面使用了RxJava</h3><p><a href="https://github.com/fangx/ZhiHuMVP" target="_blank" rel="external">采用MVP架构的仿知乎APP</a></p>
-<h3 id="我们的目标是-：优雅的写代码，愉快的装X"><a href="#我们的目标是-：优雅的写代码，愉快的装X" class="headerlink" title="我们的目标是 ：优雅的写代码，愉快的装X~"></a>我们的目标是 ：优雅的写代码，愉快的装X~</h3>
       
 
       
@@ -282,11 +284,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">rxjava</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Node.js</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">rxandroid</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
         		</li>
       		
 		</ul>
@@ -342,7 +344,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://fangx.me/2016/03/20/RxJava3/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://fangx.me/Node-js开发之环境搭建.html" alt="微信分享二维码">
     </div>
 </div>
 
@@ -356,18 +358,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2016/09/28/Node-js开发之环境搭建/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/Node-js开发之NPM使用介绍.html" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Node.js开发环境搭建
+          Node.js开发之NPM使用介绍
         
       </div>
     </a>
   
   
-    <a href="/2016/03/13/RxJava2/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">RxJava基础入门系列(二)</div>
+    <a href="/RxJava3.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">RxJava基础入门系列(三)</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -495,7 +497,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">NPM</a>
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -503,7 +505,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+                <a href="javascript:void(0)" class="js-tag color4">NPM</a>
               </li>
              
               <li class="article-tag-list-item">
